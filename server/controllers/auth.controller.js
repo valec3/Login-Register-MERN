@@ -14,7 +14,7 @@ export const  signup = async (req, res) => {
         const existUser = await User.findOne({ email });
         if (existUser) return res.status(400).json({ message: "The user already exists" });
 
-        
+
         // Encriptar la contraseña con SHA-256 (primer método)
         const sha256 = crypto.createHash("sha256");
         sha256.update(password);
@@ -93,3 +93,34 @@ export const  signin = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 }
+
+
+export const  signout = async (req, res) => {
+    try {
+        res.clearCookie("access-token");
+        res.status(200).json({ message: "Sign out successfully" });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+export const profile = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        res.status(200).json({
+            id: user._id,
+            username: user.username,
+            email: user.email,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server error" });
+    }
+};

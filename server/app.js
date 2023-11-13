@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import authRoutes from './routes/auth.routes.js';
+import cookieParser from 'cookie-parser';
 
 // Create our Express application
 const app = express();
@@ -9,6 +10,8 @@ const app = express();
 app.use(morgan('dev'));
 // Parse incoming requests data
 app.use(express.json());
+// Parse cookie
+app.use(cookieParser());
 
 app.use("/api",authRoutes);
 
