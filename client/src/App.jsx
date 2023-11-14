@@ -2,6 +2,7 @@ import './App.css'
 import { Route,BrowserRouter, Routes, Navigate } from "react-router-dom";
 import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path="/dashboard" element={<h1 className='bg-black w-full text-white text-4xl font-bold text-center p-10'>Dashboard</h1>} />
                 </Routes>
             </main>
+            <Toaster/>
         </BrowserRouter>
     )
 }

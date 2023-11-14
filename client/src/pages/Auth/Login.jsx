@@ -1,6 +1,20 @@
 import { useState } from "react"
 import { login } from "../../services/api"
 import { Link, useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
+
+const notify = (message) => toast(
+    message,
+    {
+        icon: '✅',
+        style: {
+            borderRadius: '10px',
+            background: '#008000',
+            color: '#fff',
+            fontWeight: 'bold',
+        },
+    }
+)
 
 const Login = () => {
 
@@ -20,6 +34,8 @@ const Login = () => {
         const response =await login(dataUser)
         console.log(response)
         if(response.username){
+            notify('Inicio de sesión correcto')
+            setTimeout(() => {}, 2000)
             navigate('/dashboard')
         }
     }
@@ -45,7 +61,7 @@ const Login = () => {
                         />
                     </div>
                     <div>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
                         <input 
                             type="password" 
                             name="password" 
