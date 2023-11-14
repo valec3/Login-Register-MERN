@@ -11,7 +11,7 @@ function App() {
                     <Route path="/" element={<Navigate to="/register"/>} />
                     <Route path="/register" element={<Register/>} />
                     <Route path="/login" element={<Login/>} />
-                    <Route path="/dashboard" element={<h1>Dashboard</h1>} />
+                    <Route path="/dashboard" element={<h1 className='bg-black w-full text-white text-4xl font-bold text-center p-10'>Dashboard</h1>} />
                 </Routes>
             </main>
         </BrowserRouter>

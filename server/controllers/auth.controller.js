@@ -12,7 +12,7 @@ export const  signup = async (req, res) => {
 
         // Buscar el usuario en la base de datos
         const existUser = await User.findOne({ email });
-        if (existUser) return res.status(400).json({ message: "The user already exists" });
+        if (existUser) return res.status(400).json({ message: "The user email already exists" });
 
 
         // Encriptar la contraseña con SHA-256 (primer método)
